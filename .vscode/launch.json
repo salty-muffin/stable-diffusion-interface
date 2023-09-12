@@ -1,0 +1,28 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "generate image",
+            "type": "python",
+            "request": "launch",
+            "program": "generate_image.py",
+            "args": [
+                "--prompt=A majestic lion jumping from a big stone at night",
+                "--steps=50",
+                "out/test.png"
+            ],
+            "console": "integratedTerminal"
+        }
+    ]
+}
