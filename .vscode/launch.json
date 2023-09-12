@@ -18,7 +18,23 @@
             "request": "launch",
             "program": "generate_image.py",
             "args": [
-                "--prompt=A majestic lion jumping from a big stone at night",
+                // "--prompt=snowy potato field, photorealistic outdoor scenes, wild and daring, naked muscular guy holding a parsnip to cover his genitals",
+                // "--prompt=flower field in spring, photorealistic outdoor scenes, wild and daring, topless muscular guy holding a basket of strawberries",
+                "--prompt=flower field in spring, photorealistic outdoor scenes, wild and daring, a group of topless muscular guys holding a baskets of strawberries, wearing green and red felt hats",
+                "--steps=50",
+                "--count=5",
+                "out/may1_.png"
+            ],
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "image to image",
+            "type": "python",
+            "request": "launch",
+            "program": "image_to_image.py",
+            "args": [
+                "--image=https://www.efbts.ca/Portals/21/adam/Content/h7Z4_Dio4E2JSQI37ELt3Q/Image1/P%20(4).jpg",
+                "--prompt=snowy potato field, photorealistic outdoor scenes, wild and daring, topless muscular guy holding a basket of parsnips",
                 "--steps=50",
                 "out/test.png"
             ],
