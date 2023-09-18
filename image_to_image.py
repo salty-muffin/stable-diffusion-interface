@@ -6,6 +6,8 @@ import click
 from PIL import Image
 from urllib.parse import urlparse
 
+from generate_image import parse_comma_list
+
 
 def is_local(url):
     url_parsed = urlparse(url)
@@ -26,8 +28,12 @@ def parse_image(s: str):
 @click.argument("filepath", type=click.Path(dir_okay=False), metavar="PATH")
 @click.option("--image", type=parse_image, help="image imput", required=True)
 @click.option("--prompt", type=str, help="prompt for image generation", required=True)
+@click.option("--strength", type=click.FloatRange(0.0, 1.0), help="extent to transform the reference image", default=0.3)
+@click.option("--no", type=parse_comma_list, help="negative prompt(s)", required=False)
 # fmt: on
-def image_to_image(filepath: str, image: Image, prompt: str):
+def image_to_image(
+    filepath: str, image: Image, prompt: str, strength: float, no: list[str] = None
+):
     # load both refiner
     pipe = StableDiffusionXLImg2ImgPipeline.from_pretrained(
         "stabilityai/stable-diffusion-xl-refiner-1.0",
@@ -44,6 +50,8 @@ def image_to_image(filepath: str, image: Image, prompt: str):
     image = pipe(
         prompt,
         image=image,
+        strength=strength,
+        negative_prompt=no,
     ).images[0]
 
     image.save(filepath)

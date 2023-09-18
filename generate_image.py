@@ -4,14 +4,23 @@ import torch
 import click
 
 
+def parse_comma_list(s: str | list):
+    if isinstance(s, list):
+        return s
+    return [element.strip() for element in s.split(",")]
+
+
 # fmt: off
 @click.command()
 @click.argument("filepath", type=click.Path(dir_okay=False), metavar="PATH")
 @click.option("--prompt", type=str, help="prompt for image generation", required=True)
 @click.option("--steps", type=int, help="generation steps", default=50)
 @click.option("--count", type=int, help="count of images to be generated", required=False)
+@click.option("--no", type=parse_comma_list, help="negative prompt(s)", required=False)
 # fmt: on
-def generate_image(filepath: str, prompt: str, steps: int, count: int = None):
+def generate_image(
+    filepath: str, prompt: str, steps: int, count: int = None, no: list[str] = None
+):
     # load both base & refiner
     base = DiffusionPipeline.from_pretrained(
         "stabilityai/stable-diffusion-xl-base-1.0",
@@ -43,6 +52,7 @@ def generate_image(filepath: str, prompt: str, steps: int, count: int = None):
 
         latent = base(
             prompt=prompt,
+            negative_prompt=no,
             num_inference_steps=steps,
             denoising_end=high_noise_frac,
             output_type="latent",
@@ -64,6 +74,7 @@ def generate_image(filepath: str, prompt: str, steps: int, count: int = None):
             print(f"generating '{_filepath}'")
             latent = base(
                 prompt=prompt,
+                negative_prompt=no,
                 num_inference_steps=steps,
                 denoising_end=high_noise_frac,
                 output_type="latent",
