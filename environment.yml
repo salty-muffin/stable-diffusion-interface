@@ -1,4 +1,4 @@
-name: stylegan3
+name: stable-diffusion
 channels:
   - pytorch
   - nvidia

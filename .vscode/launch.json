@@ -23,10 +23,10 @@
                 // "--prompt=flower field in spring, photorealistic outdoor scenes, wild and daring, a group of topless muscular guys holding a baskets of strawberries, wearing green and red felt hats",
                 // "--prompt=dollar bills flying out of the slit of an atm at high speed, wall street, photorealistic outdoor scene, wild and windy",
                 // "--prompt=deformed, soft, molten, melted, liquid metal ATM, dripping, melting silver ice, soft silver jelly, liquid wax ATM, realistic indoor photography, white walls, concrete floor",
-                "--prompt=the cookie monster in a garden",
+                "--prompt=middle aged super 8 filmmaker with glasses gets strangled by a belt and roses, realistic photography",
                 "--steps=50",
-                // "--count=1",
-                "out/test.png"
+                "--count=3",
+                "out/roses2_.png"
             ],
             "console": "integratedTerminal"
         },
@@ -36,10 +36,10 @@
             "request": "launch",
             "program": "image_to_image.py",
             "args": [
-                "--image=in/kubi_velvet_sq.jpg",
-                "--prompt=portrait of the ((cookie)) ((monster)) in a garden, bright ((blue)) ((fur)), happy, cookies grow on trees, realistic outdoor photography",
-                "--strength=0.8",
-                "out/test00.png"
+                "--image=in/jan_peters.jpg",
+                "--prompt=filmmaker with glasses being strangled by a belt and roses, realistic photography",
+                "--strength=0.6",
+                "out/test02.png"
             ],
             "console": "integratedTerminal"
         }
